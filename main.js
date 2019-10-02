@@ -4,7 +4,8 @@ function drawBarChart(data, options, element) {
     $(element).css('width', options['width']);
     $(element).css('height', options['height']);
     $(element).css('background-color', options['bar-color']);
-    $(element).css('grid-template-rows', data.length + ', 1fr');
+    $(element).css('grid-template-columns', data.length + ', 1fr');
+    //$('header').css('grid-column-end', data.length);
     myHeader.innerText = options['chart-title'];
 
     // for each value in the data array, create a new div in the Chart
@@ -26,7 +27,7 @@ function drawBarChart(data, options, element) {
       let bar = '.bar-' + (i + 1);
       let key = dataKeys[i];
       $('<div class="bar-' + (i + 1) +'">').appendTo(element);
-      $(bar).css('grid-column-end', data[key]);
+      $(bar).css('grid-row-start', (101 - data[key]));
       $('<h2>' + key + ': ' + data[key] + '</h2>').appendTo(bar);
     } // end of for loop
 
@@ -35,7 +36,7 @@ function drawBarChart(data, options, element) {
 } // end of function drawBarChart
 
 let data = [50, 8, 80, 9, 100, 60, 40, 5];
-let data2 = {"Mercury": 0, "Venus": 0, "Earth": 1, "Mars": 2, 
+let data2 = {"Mercury": 1, "Venus": 1, "Earth": 1, "Mars": 2, 
               "Jupiter": 67, "Saturn": 62, "Uranus": 27, "Neptune": 14};
 let options = {'width': '70vw', 
                 'height': '50vh', 
