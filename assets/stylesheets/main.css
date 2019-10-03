@@ -74,11 +74,18 @@ html, body {
 }
 
 [class*="bar"] {
-  grid-row-start: 2;
-  grid-row-end: 101;
+  /*grid-row-start: 2;
+  grid-row-end: 101;*/
   border-radius: 5px 5px 0 0;
   background-color: #ff4136;
 }
+
+[class*="label"] {
+  color: black;
+  border-top: 1px solid black;
+}
+
+
 
 
 

@@ -23,17 +23,29 @@ function drawBarChart(data, options, element) {
     $('header').css('grid-column', '1 / ' + dataKeys.length);
     
     myHeader.innerText = options['chart-title'];
-    testArea.innerText = largestValue; // for testing purposes
+    testArea.innerText = totalRows; // for testing purposes
 
 
     // for each value in the data object, create a new div in the Chart
     // element, assign it a length, and add the value into the bar
     for (let i = 0; i < dataKeys.length; i++) {
       let bar = '.bar-' + (i + 1);
+      let label = '.label-' + (i + 1);
       let key = dataKeys[i];
-      $('<div class="bar-' + (i + 1) +'">').appendTo(element);
-      $(bar).css('grid-row-start', ((totalRows - 1) - data[key]));
-      $('<h2>' + key + ': ' + data[key] + '</h2>').appendTo(bar);
+            
+      $('<div class="bar-' + (i + 1) + '">').appendTo(element);
+      $(bar).css('grid-row-start', ((totalRows) - data[key]));
+      $(bar).css('grid-row-end', (totalRows));
+      $(bar).css('grid-column-start', (i + 1));
+      $(bar).css('grid-column-end', (i + 2));
+
+      $('<div class="label-' + (i + 1) + '">').appendTo(element);
+      $(label).css('grid-row-start', totalRows);
+      $(label).css('grid-row-end', totalRows + 1);
+      $(label).css('grid-column-start', (i + 1));
+      $(label).css('grid-column-end', (i + 2));
+      $('<h2>' + key + '</h2>').appendTo(label);
+      $('<h2>' + data[key] + '</h2>').appendTo(bar);
     } // end of for loop
 
 
@@ -55,7 +67,7 @@ function objectMax(keys, dataObject) {
 } // end of function objectMax
 
 
-let data = {"Mercury": 1 , "Venus": 1, "Earth": 1, "Mars": 2, 
+let data = {"Mercury": 0, "Venus": 0, "Earth": 1, "Mars": 2, 
               "Jupiter": 67, "Saturn": 62, "Uranus": 27, "Neptune": 14};
 let options = {'width': '70vw', 
                 'height': '50vh', 
