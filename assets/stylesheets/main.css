@@ -49,15 +49,40 @@ q:before, q:after {
   content: none;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 150px auto 150 px;
+  grid-template-rows: 50px auto 50 px;
+  grid-gap: 1em;
+}
+
+#pageTitle {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  background-color: lightskyblue;
+  color: black;
+  font-size: 30pt;
+  text-align: center;
+}
+
+#pageFooter {
+  grid-column: 1 / 4;
+  grid-row: 3 / 4;
+  background-color: lightskyblue;
+  text-align: end;
+}
+
 .chart {
   height: 100vh; /* default value */
   width: 70vw; /* default value */
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
   display: grid;
   grid-template-rows: repeat(100, 1fr);
   grid-column-gap: 5px;
 }
 
-header {
+#myHeader {
   grid-column: 1 / 8;
   text-align: center;
   font-size: 20pt;

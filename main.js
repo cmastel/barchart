@@ -23,7 +23,6 @@ function drawBarChart(data, options, element) {
     $('header').css('grid-column', '1 / ' + dataKeys.length);
     
     myHeader.innerText = options['chart-title'];
-    testArea.innerText = totalRows; // for testing purposes
 
 
     // for each value in the data object, create a new div in the Chart
