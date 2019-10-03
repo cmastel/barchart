@@ -1,11 +1,13 @@
 function drawBarChart(data, options, element) {
   $(document).ready(function(){
-  
+    
+    let dataKeys = Object.keys(data);
+
     $(element).css('width', options['width']);
     $(element).css('height', options['height']);
     $(element).css('background-color', options['bar-color']);
-    $(element).css('grid-template-columns', data.length + ', 1fr');
-    //$('header').css('grid-column-end', data.length);
+    $(element).css('grid-template-columns', dataKeys.length + ', 1fr');
+    $('header').css('grid-column', '1 / ' + dataKeys.length);
     myHeader.innerText = options['chart-title'];
 
     // for each value in the data array, create a new div in the Chart
@@ -20,7 +22,6 @@ function drawBarChart(data, options, element) {
     */
 
 
-    let dataKeys = Object.keys(data);
     // for each value in the data object, create a new div in the Chart
     // element, assign it a length, and add the value into the bar
     for (let i = 0; i < dataKeys.length; i++) {
