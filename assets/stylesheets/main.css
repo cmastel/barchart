@@ -49,6 +49,8 @@ q:before, q:after {
   content: none;
 }
 
+
+
 .wrapper {
   display: grid;
   grid-template-columns: 150px auto 150px;
@@ -78,11 +80,11 @@ q:before, q:after {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
   display: grid;
-  grid-template-rows: repeat(100, 1fr);
+  /* grid-template-rows: repeat(100, 1fr); */
   grid-column-gap: 5px;
 }
 
-#myHeader {
+#chartTitle {
   grid-column: 1 / 8;
   text-align: center;
   font-size: 20pt;
@@ -99,8 +101,6 @@ html, body {
 }
 
 [class*="bar"] {
-  /*grid-row-start: 2;
-  grid-row-end: 101;*/
   border-radius: 5px 5px 0 0;
   /*background-color: #ff4136;*/
   background-color: #66B9BF;
@@ -111,14 +111,19 @@ html, body {
   border-top: 1px solid black;
 }
 
-.yAxis { 
-  color: black;
-  border-right: 1px solid black; 
+.yAxisTitle { 
+  color: black; 
   text-align: center;
   writing-mode: vertical-rl;
   text-orientation: sideways;
+  transform: rotate(180deg);
 }
 
+.yAxisTicks { 
+  color: black;
+  border-right: 1px solid black; 
+
+}
 
 
 

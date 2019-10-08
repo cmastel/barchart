@@ -12,24 +12,33 @@ function drawBarChart(data, options, element) {
     // to allow for a Title, X-axis Title, and Bar Labels
     let totalRows = largestValue + 3;
 
-    myHeader.innerText = options['chart-title'];
+    chartTitle.innerText = options['chart-title'];
     $(element).css('width', options['width']);
     $(element).css('height', options['height']);
     $(element).css('background-color', options['background-color']);
-    $('.bar').css('background-color', options['bar-color']); // NOT WORKING
+    $('bar').css('background-color', options['bar-color']); // NOT WORKING
     // set the number of columns in the chart by the number of labels (dataKeys)
-    $(element).css('grid-template-columns', (dataKeys.length + 1) + ', 1fr');
+    // 2 columns are added for yAxis title and yAxis tick marks
+    $(element).css('grid-template-columns', (dataKeys.length + 2) + ', 1fr');
     // set the number of rows in the chart to totalRows determined above
     $(element).css('grid-template-rows', 'repeat(' + totalRows + ', 1fr)');
-    // have the header (therefore chart title) span the width of hte chart
-    $('header').css('grid-column', '1 / ' + dataKeys.length);
+    // have the header (therefore chart title) span the width of the chart
+    $('header').css('grid-column', '1 / ' + (dataKeys.length + 2));
     
-    // create the y-Axis
-    $('<div class="yAxis">' + options['yAxisTitle'] + '</div>').appendTo(element);
-    $('.yAxis').css('grid-row-start', 1);
-    $('.yAxis').css('grid-row-end', totalRows);
-    $('.yAxis').css('grid-column-start', 1);
-    $('.yAxis').css('grid-column-end', 2);
+    // create the y-Axis title
+    $('<div class="yAxisTitle">' + options['yAxisTitle'] + '</div>').appendTo(element);
+    $('.yAxisTitle').css('grid-row-start', 2);
+    $('.yAxisTitle').css('grid-row-end', totalRows);
+    $('.yAxisTitle').css('grid-row-end', totalRows);
+    $('.yAxisTitle').css('grid-column-start', 1);
+    $('.yAxisTitle').css('grid-column-end', 2);
+
+    // create the y-Axis tick marks
+    $('<div class="yAxisTicks">' + largestValue + '</div>').appendTo(element);
+    $('.yAxisTicks').css('grid-row', 2 / (2 + 1));
+    $('.yAxisTicks').css('grid-column-start', 2);
+    $('.yAxisTicks').css('grid-column-end', 3);
+
 
     // for each value in the data object, create a new div in the Chart
     // element, assign it a length, and add the value into the bar
@@ -41,14 +50,14 @@ function drawBarChart(data, options, element) {
       $('<div class="bar-' + (i + 1) + '">').appendTo(element);
       $(bar).css('grid-row-start', ((totalRows) - data[key]));
       $(bar).css('grid-row-end', (totalRows));
-      $(bar).css('grid-column-start', (1 + i + 1));
-      $(bar).css('grid-column-end', (1 + i + 2));
+      $(bar).css('grid-column-start', (2 + i + 1));
+      $(bar).css('grid-column-end', (2 + i + 2));
 
       $('<div class="label-' + (i + 1) + '">').appendTo(element);
       $(label).css('grid-row-start', totalRows);
       $(label).css('grid-row-end', totalRows + 1);
-      $(label).css('grid-column-start', (1 + i + 1));
-      $(label).css('grid-column-end', (1 + i + 2));
+      $(label).css('grid-column-start', (2 + i + 1));
+      $(label).css('grid-column-end', (2 + i + 2));
       $('<h2>' + key + '</h2>').appendTo(label);
       $('<h2>' + data[key] + '</h2>').appendTo(bar);
     } // end of for loop
@@ -77,7 +86,7 @@ let data = {"Mercury": 0, "Venus": 0, "Earth": 1, "Mars": 2,
 let options = {'width': '70vw', 
                 'height': '50vh', 
                 'background-color': '#EEAA7B',
-                'bar-color': '#07889B',
+                'bar-color': '#EEAA7B',
                 'chart-title': 'Moons of Each Planet',
                 'yAxisTitle': 'Number of Moons'
 };
