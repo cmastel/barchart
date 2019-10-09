@@ -6,9 +6,7 @@ function drawBarChart(data, options, element) {
     let largestValue = objectMax(dataKeys, data);
 
     chartStructure(largestValue, dataKeys, options, element);
-
     defineBars(largestValue, dataKeys, options, data, element);
-
     tickMarks(largestValue, element);
 
   }); // end of $(document).ready
@@ -49,17 +47,17 @@ function chartStructure(maxValue, xLabels, options, element) {
 } // end of function chartStructure
 
 function defineBars(maxValue, xLabels, options, data, element) {
-  let totalRows = maxValue + 2;
+  let totalRows = maxValue + 2; // define the total number of rows in .chart grid
 
+  // loop through the number of items in xLabels array, which corresponds to
+  // the number of "bars" in the chart
   for (let i = 0; i < xLabels.length; i++) {
     let bar = '.bar-' + (i + 1);
     let label = '.label-' + (i + 1);
     let key = xLabels[i];
 
-    $('<div class="xAxis">').appendTo(element);
-    $('.xAxis').css('grid-row', totalRows + '/' + (totalRows + 1));
-    $('.xAxis').css('grid-column', '3 / ' + (xLabels.length + 3));
-
+    // create a class for each label, position at the bottom of each bar,
+    // and add the label to the chart
     $('<div class="label-' + (i + 1) + '">').appendTo(element);
     $(label).css('grid-row-start', totalRows);
     $(label).css('grid-row-end', totalRows + 1);
@@ -67,6 +65,8 @@ function defineBars(maxValue, xLabels, options, data, element) {
     $(label).css('grid-column-end', (4 + i));
     $('<h2>' + key + '</h2>').appendTo(label);
     
+    // create a class for each bar, and position it from its starting value
+    // down to the bottom bottom of the chart, and add the value to the bar
     $('<div class="bar-' + (i + 1) + '">').appendTo(element);
     $(bar).css('grid-row-start', ((totalRows) - data[key]));
     $(bar).css('grid-row-end', (totalRows));
@@ -74,6 +74,11 @@ function defineBars(maxValue, xLabels, options, data, element) {
     $(bar).css('grid-column-end', (4 + i));
     $('<h2>' + data[key] + '</h2>').appendTo(bar);
   } // end for loop
+
+  // define the xAxis border
+  $('<div class="xAxis">').appendTo(element);
+  $('.xAxis').css('grid-row', totalRows + '/' + (totalRows + 1));
+  $('.xAxis').css('grid-column', '3 / ' + (xLabels.length + 3));
 
   // ensure bar color matches that which is defined in options
   $('[class*="bar"]').css('background-color', options['bar-color']);
@@ -101,8 +106,11 @@ function tickMarks(maxValue, element) {
 } // end tickMarks function
 
 
+// user can input and "labels" and associated values into the data Object
 let data = {"Mercury": 0, "Venus": 0, "Earth": 1, "Mars": 2, 
               "Jupiter": 67, "Saturn": 62, "Uranus": 27, "Neptune": 14};
+
+// user can adjust any of the following options
 let options = {'width': '70vw', 
                 'height': '50vh', 
                 'background-color': '#EEAA7B',
@@ -112,5 +120,6 @@ let options = {'width': '70vw',
 };
 let element = '.chart'
 
+// call the drawBarChart function, which in turns runs all of the above code
 drawBarChart(data, options, element);
 

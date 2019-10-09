@@ -60,6 +60,7 @@ html, body {
   justify-content: center;
 }
 
+/* .wrapper creates the overall page grid */
 .wrapper {
   display: grid;
   grid-template-columns: 150px auto 150px;
@@ -83,6 +84,7 @@ html, body {
   text-align: right;
 }
 
+/* .chart creates the grid which the bar-chart will be created in */
 .chart {
   height: 100vh; /* default value */
   width: 70vw; /* default value */
@@ -110,7 +112,6 @@ html, body {
   color: black;
   border-right: 1px solid black;
 }
-
 
 .xAxis {
   color: black;
