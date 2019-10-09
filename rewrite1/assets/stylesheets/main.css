@@ -106,7 +106,7 @@ html, body {
   transform: rotate(180deg);
 }
 
-.yAxisTicks {
+.yAxis {
   color: black;
   border-right: 1px solid black;
 }
@@ -121,10 +121,13 @@ html, body {
 [class*="bar"] {
   border-radius: 5px 5px 0 0;
   background-color: #ff4136;
-  /*background-color: #66B9BF;*/
 }
 
 [class*="label"] {
+  color: black;
+}
+
+[class*="tick"] {
   color: black;
 }
 

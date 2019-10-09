@@ -9,7 +9,7 @@ function drawBarChart(data, options, element) {
 
     defineBars(largestValue, dataKeys, options, data, element);
 
-    tickMarks(largestValue, data, element);
+    tickMarks(largestValue, element);
 
   }); // end of $(document).ready
 
@@ -80,18 +80,14 @@ function defineBars(maxValue, xLabels, options, data, element) {
 
 } // end defineBars function
 
-function tickMarks(maxValue, data, element) {
-  $('<div class="yAxisTicks">').appendTo(element);
-  $('.yAxisTicks').css('grid-row', '2 / ' + (maxValue + 2));
-  $('.yAxisTicks').css('grid-column', '2 / 3');
-/*
-  let i = 0;
-  let tick = '.tick-' + (i + 1);
-  $('<div class="tick-' + (i + 1) + '">').appendTo(element);
-  $(tick).css('grid-row', '2 / 3');
-  $(tick).css('grid-column', '2 / 3');
-  $('<h2>' + maxValue + '</h2>').appendTo(tick);
-*/
+function tickMarks(maxValue, element) {
+  // define yAxis border
+  $('<div class="yAxis">').appendTo(element);
+  $('.yAxis').css('grid-row', '2 / ' + (maxValue + 2));
+  $('.yAxis').css('grid-column', '2 / 3');
+
+  // loop through MaxValue to determine and create 5 evenly spaced
+  // tick marks along the yAxis
   for (let i = 0; i < 5; i++){
     let tick = '.tick-' + (i + 1);
     let tickValue = maxValue - (0.25 * i * maxValue);
@@ -102,7 +98,6 @@ function tickMarks(maxValue, data, element) {
     $(tick).css('grid-column', '2 / 3');
     $('<h2>' + tickValue + '</h2>').appendTo(tick);
   }
-
 } // end tickMarks function
 
 
