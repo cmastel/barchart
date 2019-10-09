@@ -9,6 +9,7 @@ function drawBarChart(data, options, element) {
 
     defineBars(largestValue, dataKeys, options, data, element);
 
+    tickMarks(largestValue, data, element);
 
   }); // end of $(document).ready
 
@@ -49,10 +50,15 @@ function chartStructure(maxValue, xLabels, options, element) {
 
 function defineBars(maxValue, xLabels, options, data, element) {
   let totalRows = maxValue + 2;
+
   for (let i = 0; i < xLabels.length; i++) {
     let bar = '.bar-' + (i + 1);
     let label = '.label-' + (i + 1);
     let key = xLabels[i];
+
+    $('<div class="xAxis">').appendTo(element);
+    $('.xAxis').css('grid-row', totalRows + '/' + (totalRows + 1));
+    $('.xAxis').css('grid-column', '3 / ' + (xLabels.length + 3));
 
     $('<div class="label-' + (i + 1) + '">').appendTo(element);
     $(label).css('grid-row-start', totalRows);
@@ -68,7 +74,36 @@ function defineBars(maxValue, xLabels, options, data, element) {
     $(bar).css('grid-column-end', (4 + i));
     $('<h2>' + data[key] + '</h2>').appendTo(bar);
   } // end for loop
+
+  // ensure bar color matches that which is defined in options
+  $('[class*="bar"]').css('background-color', options['bar-color']);
+
 } // end defineBars function
+
+function tickMarks(maxValue, data, element) {
+  $('<div class="yAxisTicks">').appendTo(element);
+  $('.yAxisTicks').css('grid-row', '2 / ' + (maxValue + 2));
+  $('.yAxisTicks').css('grid-column', '2 / 3');
+/*
+  let i = 0;
+  let tick = '.tick-' + (i + 1);
+  $('<div class="tick-' + (i + 1) + '">').appendTo(element);
+  $(tick).css('grid-row', '2 / 3');
+  $(tick).css('grid-column', '2 / 3');
+  $('<h2>' + maxValue + '</h2>').appendTo(tick);
+*/
+  for (let i = 0; i < 5; i++){
+    let tick = '.tick-' + (i + 1);
+    let tickValue = maxValue - (0.25 * i * maxValue);
+    let tickRow = Math.round((maxValue + 2) - tickValue);
+    $('<div class="tick-' + (i + 1) + '">').appendTo(element);
+    $(tick).css('grid-row-start', (tickRow));
+    $(tick).css('grid-row-end', (tickRow + 1));
+    $(tick).css('grid-column', '2 / 3');
+    $('<h2>' + tickValue + '</h2>').appendTo(tick);
+  }
+
+} // end tickMarks function
 
 
 let data = {"Mercury": 0, "Venus": 0, "Earth": 1, "Mars": 2, 
