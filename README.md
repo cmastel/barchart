@@ -4,10 +4,7 @@ This project consists of a library that will help other programmers develop bar 
 
 ## Notes to Reviewers
 * I've gotten a decent ways along this stretch project, but am not able to do anymore before my Lighthouse Labs cohort
-  starts on October 14. Therefore, please consider this submission as incomplete, but I'm interested in any feedback.
-* For the github history, I tried creating a fork with files in a different folder (rewrite1), but there is now an issue
-  between what is on github and my local git repository. In the github repository, you can ignore the rewrite1 folder as
-  all other files (barchart.html, main.js, assets/stylesheets/main.css) are up-to-date.
+  starts on October 14. Therefore, please consider this submission as incomplete.
 * Any feedback is appreciated. Going through this exercise I have definitely learned a better way to approach it 
   from the start that would likely result in a better end-product and cleaner code. 
 
